@@ -10,7 +10,7 @@ Vue 3의 주요 기능을 배우면서 하나의 날씨 애플리케이션을 �
 
 | 일차 | 단계 | Hands on | 날씨 앱의 변화 | 상태 |
 |---|---:|---|---|---|
-| 1일차 | 1 | [MockUp](src/components/practices/1.MockUp/README.md) | 기본 문법으로 날씨 카드 화면과 사용자 이벤트 구현 | 완료 |
+| 1일차 | 1 | [MockUp](src/components/hands-on/1.MockUp/README.md) | 기본 문법으로 날씨 카드 화면과 사용자 이벤트 구현 | 완료 |
 | 2일차 | 2 | Composition | `computed`, `watch`, `watchEffect`로 검색과 상태 로직 개선 | 예정 |
 | 2일차 | 3 | Component | 화면을 부모·검색창·날씨 카드 컴포넌트로 분리 | 예정 |
 | 3일차 | 4 | Router | 메인·상세·소개 화면과 동적 경로 구성 | 예정 |
