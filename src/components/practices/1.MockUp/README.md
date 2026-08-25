@@ -1,4 +1,4 @@
-# Hands-on 1 - Weather Mockup
+# Hands-on 1 - MockUp
 
 ## 구현 목표
 

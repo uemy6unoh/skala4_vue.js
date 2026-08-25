@@ -1,5 +1,5 @@
 <script setup>
-import Script from './components/practices/basic/WeatherMockup.vue';
+import Script from './components/practices/1.MockUp/WeatherMockup.vue';
 </script>
 
 <template>
