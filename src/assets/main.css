@@ -3,6 +3,8 @@
 body {
   min-width: 320px;
   margin: 0;
+  color: #26364d;
+  background: #eef2f6;
 }
 
 #app {
