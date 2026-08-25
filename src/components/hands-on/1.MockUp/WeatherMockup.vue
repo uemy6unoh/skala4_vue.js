@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-// 4일차 API 연동을 대비한 가상의 백엔드 데이터 배열 (v-for 및 :key 실습용)
+// v-for로 반복 출력할 도시별 날씨 데이터
 const weatherList = ref([
   { id: 'city_01', name: '서울', temp: 28, status: '맑음', humidity: 62, wind: 2.8, fineDust: 92 },
   { id: 'city_02', name: '안양', temp: 27, status: '맑음', humidity: 58, wind: 3.1, fineDust: 42 },
@@ -10,11 +10,11 @@ const weatherList = ref([
   { id: 'city_05', name: '경주', temp: 29, status: '맑음', humidity: 81, wind: 6.2, fineDust: 28 },
 ])
 
-// 검색어 및 알림창 제어용 데이터 (v-model 대용 한글 처리 및 이벤트 실습용)
+// 검색어와 카드 선택 결과를 화면에 바로 반영하기 위해 ref로 선언
 const searchQuery = ref('')
 const selectedCityInfo = ref('카드를 클릭하거나 검색해 보세요.')
 
-// 알림 대행 함수 (window 객체 격리 우회)
+// 상세보기 버튼에서 전달받은 도시명과 날씨를 알림창에 표시
 const showDetail = (cityName, status) => {
   window.alert(`${cityName}의 현재 날씨는 [${status}] 상태입니다.`)
 }
@@ -24,7 +24,7 @@ const showDetail = (cityName, status) => {
   <div class="dashboard-wrapper">
     <section class="search-box">
       <h3>🔍 도시 검색</h3>
-      <!-- input type="text" v-model="searchQuery" placeholder="검색할 도시 이름 입력" / -->
+      <!-- 한글 조합 중인 값도 바로 보여주기 위해 v-model 대신 :value와 @input 사용 -->
       <input
         type="text"
         :value="searchQuery"
@@ -63,6 +63,7 @@ const showDetail = (cityName, status) => {
             </div>
           </div>
 
+          <!-- 버튼 클릭이 부모 카드의 @click까지 올라가지 않도록 .stop 사용 -->
           <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">상세보기</button>
         </div>
 
@@ -90,6 +91,7 @@ const showDetail = (cityName, status) => {
           </div>
         </div>
 
+        <!-- 중요한 안내 하나만 보이도록 미세먼지, 강풍, 습도 순서로 조건 배치 -->
         <p v-if="item.status === '맑음' && item.fineDust > 80" class="weather-tip warning">
           날씨는 맑지만 미세먼지가 많아요. 마스크를 착용하세요.
         </p>
