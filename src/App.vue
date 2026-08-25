@@ -1,10 +1,9 @@
 <script setup>
-import Script from './components/hands-on/1.MockUp/WeatherMockup.vue';
+import WeatherComposition from './components/hands-on/2.Composition/WeatherComposition.vue'
 </script>
 
 <template>
-  <div style="padding: 20px;">
-    <Script />
+  <div style="padding: 20px">
+    <WeatherComposition />
   </div>
-  
 </template>
