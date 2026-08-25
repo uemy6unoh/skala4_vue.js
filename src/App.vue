@@ -1,9 +1,9 @@
 <script setup>
-import WeatherComposition from './components/hands-on/2.Composition/WeatherComposition.vue'
+import WeatherParent from './components/hands-on/3.Component/WeatherParent.vue'
 </script>
 
 <template>
   <div style="padding: 20px">
-    <WeatherComposition />
+    <WeatherParent />
   </div>
 </template>
