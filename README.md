@@ -15,7 +15,7 @@ Hands-on별 README에는 기본 요구사항을 코드에 어떻게 적용했는
 1. [MockUp](src/components/hands-on/1.MockUp/README.md): 기본 Vue 문법으로 날씨 카드와 사용자 이벤트 구현 [O]
 2. [Composition](src/components/hands-on/2.Composition/README.md): computed, watch, watchEffect를 이용한 상태 로직 구성 [O]
 3. [Component](src/components/hands-on/3.Component/README.md): 화면을 검색창과 날씨 카드 등 역할별 컴포넌트로 분리 [O]
-4. Router: 메인과 상세 화면의 경로 구성 [X]
+4. [Router](src/components/hands-on/4.Router/README.md): 메인과 상세 화면의 경로 구성 [O]
 5. Store: Pinia를 이용한 공통 상태 관리 [X]
 6. Axios: 더미 데이터를 실제 API 데이터로 전환 [X]
 7. UI Library: UI 라이브러리를 적용해 화면 구성 보완 [X]
