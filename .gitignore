@@ -15,8 +15,7 @@ coverage
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode/
 .idea
 *.suo
 *.ntvs*
@@ -37,3 +36,15 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+# Local lecture practice and Vue starter files
+/src/components/practices/
+/src/components/HelloWorld.vue
+/src/components/TheWelcome.vue
+/src/components/WelcomeItem.vue
+/src/components/icons/
+/src/components/__tests__/
+/src/views/
+/src/router/
+/src/stores/
+/src/assets/logo.svg
