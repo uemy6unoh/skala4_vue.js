@@ -66,8 +66,7 @@ const showDetail = (cityName, status) => {
 <template>
   <div class="dashboard-wrapper">
     <header class="dashboard-header">
-      <p class="step-label">Hands-on 2</p>
-      <h2>날씨 Composition</h2>
+      <h1>Weather Composition</h1>
       <p>검색어와 날씨 상태에 맞는 도시를 실시간으로 계산합니다.</p>
     </header>
 
@@ -75,10 +74,12 @@ const showDetail = (cityName, status) => {
       <label for="city-search">도시 검색</label>
       <input
         id="city-search"
+        name="city-search"
         type="text"
         :value="searchQuery"
         @input="(e) => (searchQuery = e.target.value)"
-        placeholder="검색할 도시 이름 입력"
+        placeholder="도시 이름을 입력하세요…"
+        autocomplete="off"
       />
 
       <div class="search-meta">
@@ -117,14 +118,19 @@ const showDetail = (cityName, status) => {
             'is-cloudy': item.status === '흐림',
             'is-rainy': item.status === '비',
           }"
+          tabindex="0"
           @click="selectedCityInfo = `${item.name}이 선택되었습니다.`"
+          @keydown.enter="selectedCityInfo = `${item.name}이 선택되었습니다.`"
+          @keydown.space.prevent="selectedCityInfo = `${item.name}이 선택되었습니다.`"
         >
           <div class="card-header">
             <div class="city-heading">
-              <span v-if="item.status === '맑음'" class="weather-icon" aria-label="맑음">☀️</span>
-              <span v-else-if="item.status === '흐림'" class="weather-icon" aria-label="흐림">☁️</span>
-              <span v-else-if="item.status === '비'" class="weather-icon" aria-label="비">🌧️</span>
-              <span v-else class="weather-icon" aria-label="기타 날씨">🌤️</span>
+              <span v-if="item.status === '맑음'" class="weather-icon" aria-label="맑음">☀</span>
+              <span v-else-if="item.status === '흐림'" class="weather-icon" aria-label="흐림"
+                >☁</span
+              >
+              <span v-else-if="item.status === '비'" class="weather-icon" aria-label="비">☂</span>
+              <span v-else class="weather-icon" aria-label="기타 날씨">○</span>
 
               <div>
                 <h4>{{ item.name }}</h4>
@@ -132,7 +138,9 @@ const showDetail = (cityName, status) => {
               </div>
             </div>
 
-            <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">상세보기</button>
+            <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">
+              상세보기
+            </button>
           </div>
 
           <div class="weather-metrics">
@@ -173,7 +181,7 @@ const showDetail = (cityName, status) => {
       </div>
     </section>
 
-    <div class="status-bar">
+    <div class="status-bar" aria-live="polite">
       {{ selectedCityInfo }}
     </div>
   </div>
@@ -181,39 +189,38 @@ const showDetail = (cityName, status) => {
 
 <style scoped>
 .dashboard-wrapper {
-  width: min(100%, 820px);
-  margin: 24px auto;
-  padding: 24px;
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 34px;
   box-sizing: border-box;
-  color: #26364d;
-  background: #f4f7fb;
-  border: 1px solid #e2e9f2;
-  border-radius: 24px;
-  box-shadow: 0 18px 45px rgba(34, 54, 84, 0.1);
+  color: var(--app-text);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-xl);
+  box-shadow: var(--app-shadow);
 }
 
 .dashboard-header {
-  margin-bottom: 18px;
+  margin-bottom: 26px;
 }
 
-.dashboard-header h2,
+.dashboard-header h1,
 .dashboard-header p {
   margin: 0;
 }
 
-.dashboard-header h2 {
-  margin-top: 3px;
-  font-size: 26px;
+.dashboard-header h1 {
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 750;
   letter-spacing: -0.04em;
 }
 
 .dashboard-header > p:last-child {
-  margin-top: 7px;
-  font-size: 13px;
-  color: #718096;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--app-secondary);
 }
 
-.step-label,
 .section-label {
   font-size: 11px;
   font-weight: 750;
@@ -226,9 +233,9 @@ const showDetail = (cityName, status) => {
 .list-box {
   padding: 18px;
   margin-bottom: 16px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 1px solid #e1e8f1;
-  border-radius: 18px;
+  background-color: var(--app-surface-subtle);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-lg);
 }
 
 .search-box label {
@@ -247,11 +254,16 @@ const showDetail = (cityName, status) => {
   border: 1px solid #d3deeb;
   border-radius: 10px;
   outline: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
 }
 
 .search-box input:focus {
-  border-color: #6d8fc7;
-  box-shadow: 0 0 0 3px rgba(109, 143, 199, 0.14);
+  background-color: #ffffff;
+  border-color: var(--app-blue);
+  box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.14);
 }
 
 .search-meta {
@@ -299,45 +311,51 @@ const showDetail = (cityName, status) => {
   border: 1px solid #dce4ee;
   border-radius: 999px;
   cursor: pointer;
+  transition:
+    color var(--press-duration) ease,
+    background-color var(--press-duration) ease,
+    border-color var(--press-duration) ease,
+    transform var(--press-duration) var(--ease-out);
+}
+
+.weather-filter button:active {
+  transform: scale(0.97);
 }
 
 .weather-filter button.active {
   color: #ffffff;
-  background: #5f7fae;
-  border-color: #5f7fae;
+  background: var(--app-blue);
+  border-color: var(--app-blue);
 }
 
 .weather-card {
-  --weather-accent: #8ea2bc;
-  --weather-tint: #f6f8fb;
+  --weather-accent: var(--weather-cloud);
   padding: 16px;
   margin-top: 14px;
-  background: linear-gradient(145deg, var(--weather-tint), #ffffff 42%);
-  border: 1px solid #e3e8ef;
-  border-top: 4px solid var(--weather-accent);
-  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid var(--app-border);
+  border-left: 5px solid var(--weather-accent);
+  border-radius: var(--app-radius-lg);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 180ms var(--ease-out),
+    box-shadow 180ms ease;
 }
 
-.weather-card:hover {
-  box-shadow: 0 12px 26px rgba(40, 58, 84, 0.13);
-  transform: translateY(-2px);
+.weather-card:active {
+  box-shadow: 0 7px 18px rgba(40, 58, 84, 0.12);
 }
 
 .weather-card.is-sunny {
-  --weather-accent: #f2b84b;
-  --weather-tint: #fff9e9;
+  --weather-accent: var(--weather-sun);
 }
 
 .weather-card.is-cloudy {
-  --weather-accent: #8ba0b8;
-  --weather-tint: #f1f5f9;
+  --weather-accent: var(--weather-cloud);
 }
 
 .weather-card.is-rainy {
-  --weather-accent: #5c8fd8;
-  --weather-tint: #eef6ff;
+  --weather-accent: var(--weather-rain);
 }
 
 .card-header,
@@ -360,9 +378,11 @@ const showDetail = (cityName, status) => {
   width: 48px;
   height: 48px;
   place-items: center;
-  font-size: 30px;
-  background: rgba(255, 255, 255, 0.78);
-  border-radius: 14px;
+  font-size: 29px;
+  color: var(--weather-accent);
+  background: var(--app-surface-subtle);
+  border: 1px solid var(--app-border);
+  border-radius: 10px;
 }
 
 .weather-card h4,
@@ -389,12 +409,33 @@ const showDetail = (cityName, status) => {
   border: 1px solid #d5deea;
   border-radius: 9px;
   cursor: pointer;
+  transition:
+    color var(--press-duration) ease,
+    background-color var(--press-duration) ease,
+    border-color var(--press-duration) ease,
+    transform var(--press-duration) var(--ease-out);
 }
 
-.btn-detail:hover {
-  color: #ffffff;
-  background: #536f9c;
-  border-color: #536f9c;
+.btn-detail:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .weather-filter button:hover {
+    color: var(--app-blue);
+    border-color: rgba(22, 119, 255, 0.35);
+  }
+
+  .weather-card:hover {
+    box-shadow: 0 12px 26px rgba(40, 58, 84, 0.13);
+    transform: translateY(-2px);
+  }
+
+  .btn-detail:hover {
+    color: #ffffff;
+    background: var(--app-blue);
+    border-color: var(--app-blue);
+  }
 }
 
 .weather-metrics {
@@ -421,6 +462,7 @@ const showDetail = (cityName, status) => {
 
 .metric-item strong {
   font-size: 14px;
+  font-variant-numeric: tabular-nums;
 }
 
 .weather-tip {
@@ -432,21 +474,21 @@ const showDetail = (cityName, status) => {
 }
 
 .weather-tip.warning {
-  color: #991b1b;
-  background: #fff1f2;
-  border-left: 4px solid #ef4444;
+  color: #a92f2f;
+  background: #fff0f0;
+  border-left: 4px solid #df4747;
 }
 
 .weather-tip.caution {
-  color: #92400e;
-  background: #fffbeb;
-  border-left: 4px solid #f59e0b;
+  color: #9a5b00;
+  background: #fff6df;
+  border-left: 4px solid #e59a18;
 }
 
 .weather-tip.safe {
-  color: #166534;
-  background: #f0fdf4;
-  border-left: 4px solid #22c55e;
+  color: #1d7042;
+  background: #eaf8f0;
+  border-left: 4px solid #31a865;
 }
 
 .empty-result {
@@ -472,9 +514,9 @@ const showDetail = (cityName, status) => {
   padding: 12px 16px;
   font-size: 12px;
   font-weight: 650;
-  color: #49637f;
+  color: #0b5cc4;
   text-align: center;
-  background: #eaf0f7;
+  background: #e9f2ff;
   border-radius: 12px;
 }
 

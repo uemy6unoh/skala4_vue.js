@@ -18,13 +18,15 @@ defineEmits(['update-query'])
     <label for="component-city-search">도시 검색</label>
     <input
       id="component-city-search"
+      name="city-search"
       type="text"
       :value="currentQuery"
-      placeholder="검색할 도시 이름 입력"
+      placeholder="도시 이름을 입력하세요…"
+      autocomplete="off"
       @input="$emit('update-query', $event.target.value)"
     />
 
-    <div class="search-meta">
+    <div class="search-meta" aria-live="polite">
       <span>검색어: {{ currentQuery || '없음' }}</span>
       <strong>{{ resultText }}</strong>
     </div>
@@ -47,11 +49,16 @@ defineEmits(['update-query'])
   border: 1px solid #d3deeb;
   border-radius: 10px;
   outline: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
 }
 
 .search-bar input:focus {
-  border-color: #6d8fc7;
-  box-shadow: 0 0 0 3px rgba(109, 143, 199, 0.14);
+  background: #ffffff;
+  border-color: var(--app-blue);
+  box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.14);
 }
 
 .search-meta {

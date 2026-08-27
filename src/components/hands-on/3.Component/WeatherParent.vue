@@ -63,8 +63,7 @@ const showDetail = (cityItem) => {
 <template>
   <div class="dashboard-wrapper">
     <header class="dashboard-header">
-      <p class="step-label">Hands-on 3</p>
-      <h2>날씨 Component</h2>
+      <h1>Weather Component</h1>
       <p>한 화면을 역할에 따라 나누고 부모와 자식 사이에서 데이터를 전달합니다.</p>
     </header>
 
@@ -106,7 +105,7 @@ const showDetail = (cityItem) => {
       </div>
     </BaseDashboardCard>
 
-    <div class="status-bar">
+    <div class="status-bar" aria-live="polite">
       {{ selectedCityInfo }}
     </div>
   </div>
@@ -114,41 +113,39 @@ const showDetail = (cityItem) => {
 
 <style scoped>
 .dashboard-wrapper {
-  width: min(100%, 820px);
-  margin: 24px auto;
-  padding: 24px;
-  color: #26364d;
-  background: #f4f7fb;
-  border: 1px solid #e2e9f2;
-  border-radius: 24px;
-  box-shadow: 0 18px 45px rgba(34, 54, 84, 0.1);
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 34px;
+  color: var(--app-text);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-xl);
+  box-shadow: var(--app-shadow);
 }
 
 .dashboard-header {
-  margin-bottom: 18px;
+  margin-bottom: 26px;
 }
 
-.dashboard-header h2,
+.dashboard-header h1,
 .dashboard-header p,
 .list-heading h3,
 .list-heading p {
   margin: 0;
 }
 
-.dashboard-header h2 {
-  margin-top: 3px;
-  font-size: 26px;
-  font-weight: 700;
+.dashboard-header h1 {
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 750;
   letter-spacing: -0.04em;
 }
 
 .dashboard-header > p:last-child {
-  margin-top: 7px;
-  font-size: 13px;
-  color: #718096;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--app-secondary);
 }
 
-.step-label,
 .section-label {
   font-size: 11px;
   font-weight: 750;
@@ -193,9 +190,9 @@ const showDetail = (cityItem) => {
   padding: 12px 16px;
   font-size: 12px;
   font-weight: 650;
-  color: #49637f;
+  color: #0b5cc4;
   text-align: center;
-  background: #eaf0f7;
+  background: #e9f2ff;
   border-radius: 12px;
 }
 
