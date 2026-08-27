@@ -2,21 +2,17 @@
 
 ## 기본 요구사항
 
-### 1. OpenWeatherMap API를 통한 실제 날씨 데이터 적용
+### 1. UI Library 적용
 
-Hands-on 6의 Axios 요청을 유지해 시군구와 주요 도시 6곳의 실제 기온과 날씨 상태를 표시했습니다.
+Hands-on 6에서 만든 전국 날씨 지도와 상세 화면에 Element Plus UI Library를 적용했습니다.
 
-### 2. OpenWeatherMap 추가 API 활용
+### 2. 기존 화면 변경
 
-Air Pollution API로 미세먼지를 가져오고, 현재 날씨 API의 습도와 풍속을 상세 화면에 표시했습니다.
+기존 화면의 입력창, 버튼, 카드, 상태 표시와 상세 정보 영역을 Element Plus 컴포넌트로 바꿨습니다.
 
-### 3. 기타 외부 API 활용
+### 3. 기존 기능 유지
 
-Open-Meteo API로 오늘의 최저, 최고 기온을 가져오고 상세 날씨 정보에 추가했습니다.
-
-### 4. 외부 UI Library 적용
-
-Element Plus를 설치하고 기존 화면의 입력창, 버튼, 카드, 상태 표시와 상세 정보 영역을 UI 컴포넌트로 변경했습니다.
+Hands-on 6의 실제 날씨 데이터와 관심 지역, 섭씨와 화씨 변경 기능은 그대로 유지했습니다.
 
 ## 구현 화면
 
@@ -24,11 +20,9 @@ Element Plus를 설치하고 기존 화면의 입력창, 버튼, 카드, 상태 
 
 ![Element Plus를 적용한 전국 날씨 지도](./img/ui-map.png)
 
-
 ### Element Plus를 적용한 상세 날씨 화면
 
 ![Element Plus를 적용한 상세 날씨 화면](./img/ui-detail.png)
-
 
 ## 개인 추가 사항
 
