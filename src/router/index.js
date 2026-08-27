@@ -46,6 +46,42 @@ const router = createRouter({
       meta: { handsOn: 4 },
     },
     {
+      path: '/hands-on/5',
+      name: 'store-home',
+      component: () => import('../components/hands-on/5.Store/WeatherStoreHome.vue'),
+      meta: { handsOn: 5 },
+    },
+    {
+      path: '/hands-on/5/weather/:cityId',
+      name: 'store-detail',
+      component: () => import('../components/hands-on/5.Store/WeatherStoreDetail.vue'),
+      meta: { handsOn: 5 },
+    },
+    {
+      path: '/hands-on/6',
+      name: 'axios-home',
+      component: () => import('../components/hands-on/6.Axios/WeatherAxiosHome.vue'),
+      meta: { handsOn: 6 },
+    },
+    {
+      path: '/hands-on/6/weather/:locationId',
+      name: 'axios-detail',
+      component: () => import('../components/hands-on/6.Axios/WeatherAxiosDetail.vue'),
+      meta: { handsOn: 6 },
+    },
+    {
+      path: '/hands-on/7',
+      name: 'ui-home',
+      component: () => import('../components/hands-on/7.UI-Library/WeatherUIHome.vue'),
+      meta: { handsOn: 7 },
+    },
+    {
+      path: '/hands-on/7/weather/:locationId',
+      name: 'ui-detail',
+      component: () => import('../components/hands-on/7.UI-Library/WeatherUIDetail.vue'),
+      meta: { handsOn: 7 },
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('../views/NotFoundView.vue'),

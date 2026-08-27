@@ -16,12 +16,12 @@ import { RouterLink } from 'vue-router'
   width: min(100%, 560px);
   padding: 54px 30px;
   margin: 80px auto;
-  color: #26364d;
+  color: var(--app-text);
   text-align: center;
-  background: #ffffff;
-  border: 1px solid #e1e8f1;
-  border-radius: 22px;
-  box-shadow: 0 18px 45px rgba(34, 54, 84, 0.1);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-xl);
+  box-shadow: var(--app-shadow);
 }
 
 .not-found strong {
@@ -46,7 +46,20 @@ import { RouterLink } from 'vue-router'
   margin-top: 24px;
   color: #ffffff;
   text-decoration: none;
-  background: #536f9c;
-  border-radius: 9px;
+  background: var(--app-blue);
+  border-radius: 999px;
+  transition:
+    background-color var(--press-duration) ease,
+    transform var(--press-duration) var(--ease-out);
+}
+
+.not-found a:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .not-found a:hover {
+    background: var(--app-blue-hover);
+  }
 }
 </style>

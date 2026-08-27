@@ -31,11 +31,11 @@ const guideList = [
   width: min(100%, 760px);
   padding: 34px;
   margin: 24px auto;
-  color: #26364d;
-  background: #ffffff;
-  border: 1px solid #e1e8f1;
-  border-radius: 22px;
-  box-shadow: 0 18px 45px rgba(34, 54, 84, 0.1);
+  color: var(--app-text);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-xl);
+  box-shadow: var(--app-shadow);
 }
 
 .page-label,
@@ -73,8 +73,8 @@ const guideList = [
 
 .guide-list article {
   padding: 18px;
-  background: #f5f8fb;
-  border: 1px solid #e2e9f2;
+  background: var(--app-surface-subtle);
+  border: 1px solid var(--app-border);
   border-radius: 14px;
 }
 
@@ -104,7 +104,7 @@ const guideList = [
   margin-top: 24px;
   font-size: 13px;
   font-weight: 650;
-  color: #4d6e9a;
+  color: var(--app-blue);
   text-decoration: none;
 }
 

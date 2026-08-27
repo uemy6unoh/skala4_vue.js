@@ -12,7 +12,19 @@ export default defineConfig([
     files: ['**/*.{vue,js,mjs,jsx}'],
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+  globalIgnores([
+    '**/dist/**',
+    '**/dist-ssr/**',
+    '**/coverage/**',
+    'src/components/practices/**',
+    'src/components/exercise/**',
+    'src/components/HelloWorld.vue',
+    'src/components/TheWelcome.vue',
+    'src/components/WelcomeItem.vue',
+    'src/components/icons/**',
+    'src/components/__tests__/**',
+    'src/stores/counter.js',
+  ]),
 
   {
     languageOptions: {

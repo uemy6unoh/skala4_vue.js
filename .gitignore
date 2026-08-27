@@ -14,6 +14,11 @@ dist-ssr
 coverage
 *.local
 
+# Environment variables
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/
 .idea
@@ -37,6 +42,9 @@ __screenshots__/
 # Vite
 *.timestamp-*-*.mjs
 
+# Local design references
+/.design-reference/
+
 # Local lecture practice and Vue starter files
 /src/components/practices/
 /src/components/exercise/
@@ -45,5 +53,5 @@ __screenshots__/
 /src/components/WelcomeItem.vue
 /src/components/icons/
 /src/components/__tests__/
-/src/stores/
+/src/stores/counter.js
 /src/assets/logo.svg

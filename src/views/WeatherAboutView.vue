@@ -20,11 +20,11 @@ import { RouterLink } from 'vue-router'
   width: min(100%, 720px);
   padding: 34px;
   margin: 24px auto;
-  color: #26364d;
-  background: #ffffff;
-  border: 1px solid #e1e8f1;
-  border-radius: 22px;
-  box-shadow: 0 18px 45px rgba(34, 54, 84, 0.1);
+  color: var(--app-text);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-xl);
+  box-shadow: var(--app-shadow);
 }
 
 .page-label,
@@ -60,7 +60,20 @@ import { RouterLink } from 'vue-router'
   font-size: 13px;
   color: #ffffff;
   text-decoration: none;
-  background: #536f9c;
-  border-radius: 9px;
+  background: var(--app-blue);
+  border-radius: 999px;
+  transition:
+    background-color var(--press-duration) ease,
+    transform var(--press-duration) var(--ease-out);
+}
+
+.info-page a:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .info-page a:hover {
+    background: var(--app-blue-hover);
+  }
 }
 </style>

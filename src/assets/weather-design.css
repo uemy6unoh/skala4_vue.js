@@ -1,0 +1,76 @@
+:root {
+  --app-bg: #eef3f8;
+  --app-ink: #0b1f33;
+  --app-text: #152a3d;
+  --app-secondary: #617386;
+  --app-blue: #1677ff;
+  --app-blue-hover: #0967e8;
+  --app-surface: #ffffff;
+  --app-surface-solid: #ffffff;
+  --app-surface-subtle: #f6f9fc;
+  --app-border: #d8e2ec;
+  --app-shadow: 0 12px 30px rgba(11, 31, 51, 0.08);
+  --app-radius-xl: 16px;
+  --app-radius-lg: 12px;
+  --weather-sun: #ed9b00;
+  --weather-cloud: #66788a;
+  --weather-rain: #1286b1;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --press-duration: 120ms;
+  --page-enter-duration: 180ms;
+  --page-exit-duration: 140ms;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Apple SD Gothic Neo',
+    sans-serif;
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(22, 119, 255, 0.32);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --app-border: #8aa0b5;
+    --app-secondary: #40566b;
+    --app-shadow: none;
+  }
+}

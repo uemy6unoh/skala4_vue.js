@@ -71,9 +71,9 @@ onMounted(() => {
       <p class="area">{{ selectedCity.area }}</p>
 
       <div class="current-weather">
-        <span v-if="selectedCity.status === '맑음'" aria-label="맑음">☀️</span>
-        <span v-else-if="selectedCity.status === '흐림'" aria-label="흐림">☁️</span>
-        <span v-else-if="selectedCity.status === '비'" aria-label="비">🌧️</span>
+        <span v-if="selectedCity.status === '맑음'" aria-label="맑음">☀</span>
+        <span v-else-if="selectedCity.status === '흐림'" aria-label="흐림">☁</span>
+        <span v-else-if="selectedCity.status === '비'" aria-label="비">☂</span>
         <strong>{{ selectedCity.temp }}°C</strong>
         <small>{{ selectedCity.status }}</small>
       </div>
@@ -117,11 +117,11 @@ onMounted(() => {
   width: min(100%, 720px);
   padding: 30px;
   margin: 24px auto;
-  color: #26364d;
-  background: #ffffff;
-  border: 1px solid #e1e8f1;
-  border-radius: 22px;
-  box-shadow: 0 18px 45px rgba(34, 54, 84, 0.1);
+  color: var(--app-text);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-xl);
+  box-shadow: var(--app-shadow);
 }
 
 .page-label,
@@ -156,12 +156,13 @@ onMounted(() => {
   gap: 13px;
   padding: 22px;
   margin-top: 24px;
-  background: #f4f7fb;
+  background: var(--app-surface-subtle);
   border-radius: 16px;
 }
 
 .current-weather span {
   font-size: 42px;
+  color: var(--app-blue);
 }
 
 .current-weather strong {
@@ -194,6 +195,7 @@ onMounted(() => {
 .detail-grid dd {
   margin: 4px 0 0;
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 .notice {
@@ -204,18 +206,18 @@ onMounted(() => {
 }
 
 .notice.warning {
-  color: #991b1b;
-  background: #fff1f2;
+  color: #a92f2f;
+  background: #fff0f0;
 }
 
 .notice.caution {
-  color: #92400e;
-  background: #fffbeb;
+  color: #9a5b00;
+  background: #fff6df;
 }
 
 .notice.safe {
-  color: #166534;
-  background: #f0fdf4;
+  color: #1d7042;
+  background: #eaf8f0;
 }
 
 .back-link {
@@ -223,7 +225,7 @@ onMounted(() => {
   margin-top: 22px;
   font-size: 13px;
   font-weight: 650;
-  color: #4d6e9a;
+  color: var(--app-blue);
   text-decoration: none;
 }
 

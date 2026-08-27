@@ -17,14 +17,17 @@ const emit = defineEmits(['select-card', 'click-detail'])
       'is-cloudy': cityItem.status === '흐림',
       'is-rainy': cityItem.status === '비',
     }"
+    tabindex="0"
     @click="emit('select-card', `${cityItem.name}이 선택되었습니다.`)"
+    @keydown.enter="emit('select-card', `${cityItem.name}이 선택되었습니다.`)"
+    @keydown.space.prevent="emit('select-card', `${cityItem.name}이 선택되었습니다.`)"
   >
     <div class="card-header">
       <div class="city-heading">
-        <span v-if="cityItem.status === '맑음'" class="weather-icon" aria-label="맑음">☀️</span>
-        <span v-else-if="cityItem.status === '흐림'" class="weather-icon" aria-label="흐림">☁️</span>
-        <span v-else-if="cityItem.status === '비'" class="weather-icon" aria-label="비">🌧️</span>
-        <span v-else class="weather-icon" aria-label="기타 날씨">🌤️</span>
+        <span v-if="cityItem.status === '맑음'" class="weather-icon" aria-label="맑음">☀</span>
+        <span v-else-if="cityItem.status === '흐림'" class="weather-icon" aria-label="흐림">☁</span>
+        <span v-else-if="cityItem.status === '비'" class="weather-icon" aria-label="비">☂</span>
+        <span v-else class="weather-icon" aria-label="기타 날씨">○</span>
 
         <div>
           <h4>{{ cityItem.name }}</h4>
@@ -71,36 +74,33 @@ const emit = defineEmits(['select-card', 'click-detail'])
 
 <style scoped>
 .weather-card {
-  --weather-accent: #8ea2bc;
-  --weather-tint: #f6f8fb;
+  --weather-accent: var(--weather-cloud);
   padding: 16px;
   margin-top: 14px;
-  background: linear-gradient(145deg, var(--weather-tint), #ffffff 42%);
-  border: 1px solid #e3e8ef;
-  border-top: 4px solid var(--weather-accent);
-  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid var(--app-border);
+  border-left: 5px solid var(--weather-accent);
+  border-radius: var(--app-radius-lg);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 180ms var(--ease-out),
+    box-shadow 180ms ease;
 }
 
-.weather-card:hover {
-  box-shadow: 0 12px 26px rgba(40, 58, 84, 0.13);
-  transform: translateY(-2px);
+.weather-card:active {
+  box-shadow: 0 6px 16px rgba(40, 58, 84, 0.12);
 }
 
 .weather-card.is-sunny {
-  --weather-accent: #f2b84b;
-  --weather-tint: #fff9e9;
+  --weather-accent: var(--weather-sun);
 }
 
 .weather-card.is-cloudy {
-  --weather-accent: #8ba0b8;
-  --weather-tint: #f1f5f9;
+  --weather-accent: var(--weather-cloud);
 }
 
 .weather-card.is-rainy {
-  --weather-accent: #5c8fd8;
-  --weather-tint: #eef6ff;
+  --weather-accent: var(--weather-rain);
 }
 
 .card-header,
@@ -123,9 +123,11 @@ const emit = defineEmits(['select-card', 'click-detail'])
   width: 48px;
   height: 48px;
   place-items: center;
-  font-size: 30px;
-  background: rgba(255, 255, 255, 0.78);
-  border-radius: 14px;
+  font-size: 29px;
+  color: var(--weather-accent);
+  background: var(--app-surface-subtle);
+  border: 1px solid var(--app-border);
+  border-radius: 10px;
 }
 
 .weather-card h4,
@@ -152,12 +154,28 @@ const emit = defineEmits(['select-card', 'click-detail'])
   border: 1px solid #d5deea;
   border-radius: 9px;
   cursor: pointer;
+  transition:
+    color var(--press-duration) ease,
+    background-color var(--press-duration) ease,
+    border-color var(--press-duration) ease,
+    transform var(--press-duration) var(--ease-out);
 }
 
-.btn-detail:hover {
-  color: #ffffff;
-  background: #536f9c;
-  border-color: #536f9c;
+.btn-detail:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .weather-card:hover {
+    box-shadow: 0 12px 26px rgba(40, 58, 84, 0.13);
+    transform: translateY(-2px);
+  }
+
+  .btn-detail:hover {
+    color: #ffffff;
+    background: var(--app-blue);
+    border-color: var(--app-blue);
+  }
 }
 
 .weather-metrics {
@@ -184,6 +202,7 @@ const emit = defineEmits(['select-card', 'click-detail'])
 
 .metric-item strong {
   font-size: 14px;
+  font-variant-numeric: tabular-nums;
 }
 
 .weather-tip {
@@ -195,21 +214,21 @@ const emit = defineEmits(['select-card', 'click-detail'])
 }
 
 .weather-tip.warning {
-  color: #991b1b;
-  background: #fff1f2;
-  border-left: 4px solid #ef4444;
+  color: #a92f2f;
+  background: #fff0f0;
+  border-left: 4px solid #df4747;
 }
 
 .weather-tip.caution {
-  color: #92400e;
-  background: #fffbeb;
-  border-left: 4px solid #f59e0b;
+  color: #9a5b00;
+  background: #fff6df;
+  border-left: 4px solid #e59a18;
 }
 
 .weather-tip.safe {
-  color: #166534;
-  background: #f0fdf4;
-  border-left: 4px solid #22c55e;
+  color: #1d7042;
+  background: #eaf8f0;
+  border-left: 4px solid #31a865;
 }
 
 @media (max-width: 650px) {
