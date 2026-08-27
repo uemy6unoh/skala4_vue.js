@@ -23,6 +23,10 @@ const router = createRouter({
     },
     {
       path: '/',
+      redirect: { name: 'ui-home' },
+    },
+    {
+      path: '/hands-on/4',
       name: 'weather-home',
       component: () => import('../views/WeatherHomeView.vue'),
       meta: { handsOn: 4 },
