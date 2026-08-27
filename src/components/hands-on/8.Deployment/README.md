@@ -41,9 +41,8 @@ npm run preview
 
 ### Build 결과
 
-<!-- ![Build 결과](./img/build.png) -->
+![Build 결과](./img/build.png)
 
-터미널에서 `npm run build`가 완료된 화면을 촬영합니다.
 
 ### 배포된 화면
 
